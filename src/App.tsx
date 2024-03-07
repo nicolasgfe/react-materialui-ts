@@ -1,15 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes';
-import { ThemeProvider } from '@mui/material';
-import { LightTheme } from './shered/themes';
+import { AppThemeProvider } from './shered/contexts/ThemeContext';
 
 export const App = () => {
   return (
-    <ThemeProvider theme={LightTheme}>
+    <AppThemeProvider>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-    </ThemeProvider>
+    </AppThemeProvider>
   );
 }
 
