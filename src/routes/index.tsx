@@ -1,14 +1,27 @@
-import { Button } from "@mui/material";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { useAppThemeContext } from "../shered/contexts/ThemeContext";
+import { Button } from '@mui/material';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useDrawerContext } from '../shered/contexts';
+import { useEffect } from 'react';
 
 export const AppRoutes = () => {
-  const {toggleTheme} = useAppThemeContext();
-   return(
-    <Routes>
-      <Route path="/pagina-inicial" element={<Button variant="contained" color="primary" onClick={toggleTheme}>teste</Button>}/>
+  const { toggleDrawerOpen, setDrawerOptions } = useDrawerContext();
 
-      <Route path="*" element={<Navigate to={"/pagina-inicial"}></Navigate>}/> 
+  useEffect(() => {
+    setDrawerOptions([
+      {
+        icon: 'home',
+        path: '/pagina-inicial',
+        label: 'Pagina Inicial'
+      }
+    ]);
+  }, []);
+
+
+  return (
+    <Routes>
+      <Route path="/pagina-inicial" element={<Button variant="contained" color="primary" onClick={toggleDrawerOpen}>Toogle Drawer</Button>} />
+
+      <Route path="*" element={<Navigate to={'/pagina-inicial'}></Navigate>} />
     </Routes>
-  )
- };
+  );
+};
